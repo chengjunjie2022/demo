@@ -1,13 +1,13 @@
-package site.chengjunjie.demo.hutool;
+package site.chengjunjie.demo.swagger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class DemoHutoolApplication {
+public class DemoSwaggerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoHutoolApplication.class);
+        SpringApplication.run(DemoSwaggerApplication.class);
     }
 }
