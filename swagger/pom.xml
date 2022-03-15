@@ -21,9 +21,15 @@
         <java.version>1.8</java.version>
         <lombok-version>1.18.16</lombok-version>
         <swagger-annotations-version>1.5.20</swagger-annotations-version>
-        <!-- Spring swagger UI -->
+        <!--
+            Spring swagger UI
+            访问方式：http://{ip}:{port}/swagger-ui/index.html
+        -->
         <springfox-boot-starter>3.0.0</springfox-boot-starter>
-        <!-- Personal of xiaoymin swagger UI -->
+        <!--
+            Personal of xiaoymin swagger UI
+            访问方式：http://{ip}:{port}/doc.html
+        -->
         <knife4j-version>3.0.3</knife4j-version>
     </properties>
 
