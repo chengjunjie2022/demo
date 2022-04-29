@@ -1,11 +1,11 @@
-<mxfile host="app.diagrams.net" modified="2022-04-29T02:56:24.680Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="ktBH6jIXYcjYDvp6ZcBQ" version="17.4.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-29T03:39:39.516Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="JBzYt8yrhFquwJNoxNNr" version="17.4.6" type="github">
   <diagram id="JyO5wfIBnVWaUuV6kD45" name="Page-1">
-    <mxGraphModel dx="1038" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="830" dy="438" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="2" value="结束" style="strokeWidth=3;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="80" y="880" width="80" height="40" as="geometry" />
+          <mxGeometry x="80" y="1095" width="80" height="40" as="geometry" />
         </mxCell>
         <mxCell id="oCD7jEItD05XK45wnstF-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" parent="1" source="3" target="oCD7jEItD05XK45wnstF-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -48,7 +48,7 @@
         </mxCell>
         <mxCell id="oCD7jEItD05XK45wnstF-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="oCD7jEItD05XK45wnstF-8" target="ozvSxglkQWFITKLMVj53-7" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="807" y="745" as="targetPoint" />
+            <mxPoint x="953" y="745" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="oCD7jEItD05XK45wnstF-24" value="否" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="oCD7jEItD05XK45wnstF-17" vertex="1" connectable="0">
@@ -57,14 +57,14 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="oCD7jEItD05XK45wnstF-8" value="前驱为头节点" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="620" y="665" width="100" height="60" as="geometry" />
+          <mxGeometry x="766" y="665" width="100" height="60" as="geometry" />
         </mxCell>
         <mxCell id="oCD7jEItD05XK45wnstF-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="oCD7jEItD05XK45wnstF-9" target="oCD7jEItD05XK45wnstF-10" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="oCD7jEItD05XK45wnstF-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="oCD7jEItD05XK45wnstF-9" target="ozvSxglkQWFITKLMVj53-7" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="807" y="745" as="targetPoint" />
+            <mxPoint x="953" y="745" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="oCD7jEItD05XK45wnstF-26" value="失败" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="oCD7jEItD05XK45wnstF-19" vertex="1" connectable="0">
@@ -73,16 +73,16 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="oCD7jEItD05XK45wnstF-9" value="获取同步状态" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="620" y="775" width="100" height="60" as="geometry" />
+          <mxGeometry x="766" y="775" width="100" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ozvSxglkQWFITKLMVj53-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" edge="1" parent="1" source="oCD7jEItD05XK45wnstF-10" target="ozvSxglkQWFITKLMVj53-4">
+        <mxCell id="ozvSxglkQWFITKLMVj53-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;" edge="1" parent="1" source="oCD7jEItD05XK45wnstF-10" target="ozvSxglkQWFITKLMVj53-38">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="oCD7jEItD05XK45wnstF-10" value="设置当前节点为头节点" style="whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">
-          <mxGeometry x="625" y="905" width="90" height="40" as="geometry" />
+          <mxGeometry x="771" y="905" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="oCD7jEItD05XK45wnstF-25" value="成功" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="650" y="855" width="40" height="20" as="geometry" />
+          <mxGeometry x="796" y="855" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="4" value="addWaiter" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" parent="1" vertex="1">
           <mxGeometry x="182" y="381.5" width="40" height="20" as="geometry" />
@@ -92,9 +92,6 @@
         </mxCell>
         <mxCell id="FTky2M5tSAe9HihGKmfP-5" value="tryAcquire" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" parent="1" vertex="1">
           <mxGeometry x="9" y="190" width="40" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="FTky2M5tSAe9HihGKmfP-6" value="new Node(&lt;br&gt;&amp;nbsp; &amp;nbsp; Thread.currentThread(), &lt;br&gt;&amp;nbsp; &amp;nbsp; Node.EXCLUSIVE&lt;br&gt;)" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" parent="1" vertex="1">
-          <mxGeometry x="338" y="170" width="62" height="60" as="geometry" />
         </mxCell>
         <mxCell id="UahutR7zqk75CTkZ1-3s-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" parent="1" source="UahutR7zqk75CTkZ1-3s-4" target="UahutR7zqk75CTkZ1-3s-7" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -111,16 +108,16 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="UahutR7zqk75CTkZ1-3s-7" value="队列中线程获取同步状态" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;strokeWidth=3;" parent="1" vertex="1">
-          <mxGeometry x="240" y="660" width="92" height="43" as="geometry" />
+          <mxGeometry x="240" y="671" width="92" height="43" as="geometry" />
         </mxCell>
         <mxCell id="UahutR7zqk75CTkZ1-3s-10" value="acquireQueued" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" parent="1" vertex="1">
-          <mxGeometry x="150" y="670" width="40" height="20" as="geometry" />
+          <mxGeometry x="150" y="681" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="UahutR7zqk75CTkZ1-3s-15" value="Thread.currentThread().interrupt();" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" parent="1" vertex="1">
-          <mxGeometry x="160" y="905" width="40" height="20" as="geometry" />
+          <mxGeometry x="160" y="1120" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="UahutR7zqk75CTkZ1-3s-16" value="return" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" parent="1" vertex="1">
-          <mxGeometry x="70" y="855" width="40" height="20" as="geometry" />
+          <mxGeometry x="70" y="1070" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="UahutR7zqk75CTkZ1-3s-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="UahutR7zqk75CTkZ1-3s-19" target="UahutR7zqk75CTkZ1-3s-20" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -215,13 +212,13 @@
           <mxGeometry x="557" y="210" width="833" height="360" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-4" value="结束" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="637.5" y="990" width="65" height="20" as="geometry" />
+          <mxGeometry x="636" y="1010" width="65" height="20" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ozvSxglkQWFITKLMVj53-7" target="oCD7jEItD05XK45wnstF-8">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="870" y="640" />
-              <mxPoint x="670" y="640" />
+              <mxPoint x="1016" y="640" />
+              <mxPoint x="816" y="640" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -233,17 +230,22 @@
         <mxCell id="ozvSxglkQWFITKLMVj53-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;" edge="1" parent="1" source="ozvSxglkQWFITKLMVj53-7" target="ozvSxglkQWFITKLMVj53-14">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-51" value="是" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ozvSxglkQWFITKLMVj53-15">
+          <mxGeometry x="-0.1331" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-7" value="应该进入&lt;br&gt;等待状态" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="820" y="715" width="100" height="60" as="geometry" />
+          <mxGeometry x="966" y="715" width="100" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="ozvSxglkQWFITKLMVj53-14" target="oCD7jEItD05XK45wnstF-8">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="670" y="660" as="targetPoint" />
-            <mxPoint x="910" y="865" as="sourcePoint" />
+            <mxPoint x="816" y="660" as="targetPoint" />
+            <mxPoint x="1056" y="865" as="sourcePoint" />
             <Array as="points">
-              <mxPoint x="1560" y="1100" />
-              <mxPoint x="1560" y="640" />
-              <mxPoint x="670" y="640" />
+              <mxPoint x="1666" y="1100" />
+              <mxPoint x="1666" y="640" />
+              <mxPoint x="816" y="640" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -253,33 +255,33 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-14" value="线程进入等待状态" style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="825" y="1080" width="90" height="40" as="geometry" />
+          <mxGeometry x="971" y="1080" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-19" value="&lt;div&gt;node.predecessor() == head&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;align=left;" vertex="1" parent="1">
-          <mxGeometry x="455" y="682.5" width="160" height="25" as="geometry" />
+          <mxGeometry x="601" y="682.5" width="160" height="25" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-20" value="&lt;div&gt;&lt;span&gt;tryAcquire(arg)&lt;/span&gt;&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;align=left;" vertex="1" parent="1">
-          <mxGeometry x="500" y="795" width="115" height="20" as="geometry" />
+          <mxGeometry x="646" y="795" width="115" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="ozvSxglkQWFITKLMVj53-22" value="&lt;div&gt;setHead(node);&lt;/div&gt;&lt;div&gt;// help GC&lt;/div&gt;&lt;div&gt;p.next = null;&amp;nbsp;&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;align=left;" vertex="1" parent="1">
-          <mxGeometry x="492.5" y="895" width="122.5" height="60" as="geometry" />
+        <mxCell id="ozvSxglkQWFITKLMVj53-22" value="&lt;div&gt;&lt;div&gt;head = node;&lt;/div&gt;&lt;div&gt;node.thread = null;&lt;/div&gt;&lt;div&gt;node.prev = null;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;// help GC&lt;/div&gt;&lt;div&gt;node.predecessor().next = null;&amp;nbsp;&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;align=left;" vertex="1" parent="1">
+          <mxGeometry x="571" y="857.5" width="195" height="135" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-23" value="&lt;div&gt;int ws = node.predecessor().waitStatus;&lt;/div&gt;&lt;div&gt;if (ws == Node.SIGNAL)&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; return true;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;if (ws &amp;gt; 0) {&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; // CANCELLED：&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; //&amp;nbsp; 前驱节点等待超时/中断，取消了等待&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; do {&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; node.prev = pred = pred.prev;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; } while (pred.waitStatus &amp;gt; 0);&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; pred.next = node;&lt;/div&gt;&lt;div&gt;} else {&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; /*&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;* waitStatus must be 0 or PROPAGATE.&amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;* 重试以确定在park前无法获得同步状态&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;*/&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;/span&gt;&amp;nbsp; &amp;nbsp; compareAndSetWaitStatus(pred, ws, Node.SIGNAL);&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;return false;&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;align=left;" vertex="1" parent="1">
-          <mxGeometry x="1098.75" y="650" width="327.5" height="410" as="geometry" />
+          <mxGeometry x="1244.75" y="650" width="327.5" height="410" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-25" value="shouldParkAfterFailedAcquire" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" vertex="1" parent="1">
-          <mxGeometry x="930" y="735" width="40" height="20" as="geometry" />
+          <mxGeometry x="1076" y="735" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-26" value="parkAndCheckInterrupt" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" vertex="1" parent="1">
-          <mxGeometry x="920" y="1110" width="40" height="20" as="geometry" />
+          <mxGeometry x="1066" y="1110" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-27" value="&lt;div&gt;LockSupport.park(this);&lt;/div&gt;&lt;div&gt;return Thread.interrupted();&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;align=left;" vertex="1" parent="1">
-          <mxGeometry x="1098.75" y="1110" width="200" height="60" as="geometry" />
+          <mxGeometry x="1244.75" y="1110" width="200" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ozvSxglkQWFITKLMVj53-30" target="2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="ozvSxglkQWFITKLMVj53-34" value="中断" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ozvSxglkQWFITKLMVj53-33">
+        <mxCell id="ozvSxglkQWFITKLMVj53-34" value="是" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ozvSxglkQWFITKLMVj53-33">
           <mxGeometry x="-0.4073" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -287,22 +289,62 @@
         <mxCell id="ozvSxglkQWFITKLMVj53-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;" edge="1" parent="1" source="ozvSxglkQWFITKLMVj53-30" target="2">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="380" y="805" />
-              <mxPoint x="380" y="970" />
-              <mxPoint x="120" y="970" />
+              <mxPoint x="380" y="1020" />
+              <mxPoint x="380" y="1185" />
+              <mxPoint x="120" y="1185" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="ozvSxglkQWFITKLMVj53-36" value="其他" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ozvSxglkQWFITKLMVj53-35">
+        <mxCell id="ozvSxglkQWFITKLMVj53-36" value="否" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ozvSxglkQWFITKLMVj53-35">
           <mxGeometry x="-0.1592" y="-1" relative="1" as="geometry">
             <mxPoint x="9" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ozvSxglkQWFITKLMVj53-30" value="退出方式" style="strokeWidth=3;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="236" y="775" width="100" height="60" as="geometry" />
+        <mxCell id="ozvSxglkQWFITKLMVj53-30" value="是否中断" style="strokeWidth=3;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="236" y="990" width="100" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ozvSxglkQWFITKLMVj53-37" value="return" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" vertex="1" parent="1">
-          <mxGeometry x="70" y="925" width="40" height="20" as="geometry" />
+          <mxGeometry x="70" y="1140" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;" edge="1" parent="1" source="ozvSxglkQWFITKLMVj53-38" target="ozvSxglkQWFITKLMVj53-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-44" value="否" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ozvSxglkQWFITKLMVj53-41">
+          <mxGeometry x="-0.2433" y="3" relative="1" as="geometry">
+            <mxPoint x="-5" y="-3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;" edge="1" parent="1" source="ozvSxglkQWFITKLMVj53-38" target="ozvSxglkQWFITKLMVj53-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-45" value="是" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ozvSxglkQWFITKLMVj53-43">
+          <mxGeometry x="-0.2862" y="3" relative="1" as="geometry">
+            <mxPoint x="-3" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-38" value="取消&lt;br&gt;获取同步状态" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="766" y="990" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-42" value="取消获取同步状态" style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="771" y="1100" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-46" value="new Node(&lt;br&gt;&amp;nbsp; &amp;nbsp; Thread.currentThread(),&lt;br&gt;&amp;nbsp; &amp;nbsp; Node.EXCLUSIVE&lt;br&gt;)" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;align=left;" vertex="1" parent="1">
+          <mxGeometry x="340" y="160" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-47" value="cancelAcquire" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="685.75" y="1110" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-50" value="return interrupted;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="626" y="1040" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-54" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;opacity=30;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="557" y="610" width="1193" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-57" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeWidth=2;shape=mxgraph.arrows2.arrow;dy=0.6;dx=40;notch=0;" vertex="1" parent="1">
+          <mxGeometry x="350" y="675" width="190" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="ozvSxglkQWFITKLMVj53-58" value="循环CAS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF0000;" vertex="1" parent="1">
+          <mxGeometry x="395" y="679" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
