@@ -4,21 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
-    </parent>
-
-    <groupId>road.cjj.demo</groupId>
-    <artifactId>shiro-example1</artifactId>
+    <groupId>cjj.demo.shiro</groupId>
+    <artifactId>shiro-core</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
+            <artifactId>shiro-core</artifactId>
             <version>1.4.1</version>
         </dependency>
     </dependencies>

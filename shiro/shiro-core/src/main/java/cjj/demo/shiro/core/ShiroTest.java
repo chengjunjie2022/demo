@@ -1,4 +1,4 @@
-package road.cjj.demo.shiro.example1;
+package cjj.demo.shiro.core;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;

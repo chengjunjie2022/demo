@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://81.70.145.33:3306/demo?connectTimeout=1000&useUnicode=true&characterEncoding=utf-8&useTimezone=true&serverTimezone=GMT%2B8&serverTimezone=Asia/Shanghai
+      username: dev
+      password: dev
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+mybatis:
+  type-aliases-package: cjj.demo.shiro.springboot.mybatis.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
