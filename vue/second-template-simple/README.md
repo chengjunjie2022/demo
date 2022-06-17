@@ -11,20 +11,15 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
+# 构建测试环境
+npm run build:stage
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# 构建生产环境
+npm run build:prod
 
-# run unit tests
-npm run unit
+# 代码格式检查
+npm run lint
 
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
+# 代码格式检查并自动修复
+npm run lint -- --fix
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
