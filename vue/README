@@ -1,0 +1,25 @@
+npm -v
+6.14.15
+
+npm install cnpm -g
+无法加载文件 D:\nodejs\node_global\cnpm.ps1，因为在此系统上禁止运行脚本。
+# 查看当前执行策略
+Get-ExecutionPolicy -List
+# 修改当前用户的执行策略为 RemoteSigned
+Set-ExecutionPolicy -Scope CurrentUser
+输入参数提供值：RemoteSigned
+
+# 构建应用（生成node_modules & package.json）
+cnpm install vue
+
+# 全局安装 vue-cli
+cnpm install --global vue-cli
+# 创建一个基于 webpack 模板的新项目：输入项目名、作者等后一路回车即可
+vue init webpack {my-project-name}
+# 进入项目
+cd {my-project-name}
+# 构建
+cnpm install
+# 运行
+cnpm run dev
+
