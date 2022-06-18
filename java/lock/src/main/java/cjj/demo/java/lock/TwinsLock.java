@@ -1,4 +1,4 @@
-package site.chengjunjie.demo.java.lock;
+package cjj.demo.java.lock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
