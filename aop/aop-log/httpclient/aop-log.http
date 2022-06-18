@@ -1,0 +1,12 @@
+### 登录
+POST http://localhost:8080/demo/aop/login
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":"zs","pwd":"123456"}
+
+### 根据姓名查询
+GET http://localhost:8080/demo/aop/getByName?name=zs
+Accept: */*
+Cache-Control: no-cache
