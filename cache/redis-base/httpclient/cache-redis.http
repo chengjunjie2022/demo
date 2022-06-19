@@ -1,0 +1,22 @@
+### 增加缓存
+GET http://localhost:8080/cache/redis/add?key=hello&val=world&validMinutes=1
+Accept: */*
+Cache-Control: no-cache
+
+### 查询缓存
+GET http://localhost:8080/cache/redis/get?key=hello
+Accept: */*
+Cache-Control: no-cache
+
+### 删除缓存
+GET http://localhost:8080/cache/redis/del?key=hello
+Accept: */*
+Cache-Control: no-cache
+
+### 增加对象缓存
+POST http://localhost:8080/cache/redis/addObj?key=user
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username":"ls","age":20}
