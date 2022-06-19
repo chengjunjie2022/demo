@@ -1,0 +1,252 @@
+{
+    "code": 1,
+    "data": {
+        "authorization": "eyJ0eXAiOiJKV1QiLCJhbGcAQbdTwfQOOsjdYGjeWEdsYRoeb0tSnaEVYrRhS0s",
+        "id": "1237361915165020161",
+        "menus": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790568",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/users",
+                                "title": "查询用户信息列表权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790579",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/user/roles",
+                                "title": "赋予用户角色权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790556",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/user",
+                                "title": "删除用户权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790580",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/user",
+                                "title": "更新用户信息权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790561",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/user",
+                                "title": "新增用户权限"
+                            }
+                        ],
+                        "icon": "el-icon-user-solid",
+                        "id": "1236916745927790575",
+                        "menu": true,
+                        "name": "user",
+                        "path": "/user",
+                        "title": "用户管理"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790572",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/role",
+                                "title": "新增角色权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790574",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/role/*",
+                                "title": "角色详情权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790562",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/role",
+                                "title": "更新角色权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790583",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/roles",
+                                "title": "查询角色列表权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790570",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/role/*",
+                                "title": "删除角色权限"
+                            }
+                        ],
+                        "icon": "el-icon-user",
+                        "id": "1236916745927790578",
+                        "menu": true,
+                        "name": "roles",
+                        "path": "/roles",
+                        "title": "角色管理"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790565",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/permissions",
+                                "title": "查询菜单权限列表权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790577",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/permission",
+                                "title": "更新菜单权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790582",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/permission",
+                                "title": "新增菜单权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790563",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/permission",
+                                "title": "删除菜单权限"
+                            }
+                        ],
+                        "icon": "el-icon-menu",
+                        "id": "1236916745927790560",
+                        "menu": true,
+                        "name": "menus",
+                        "path": "/menus",
+                        "title": "菜单权限管理"
+                    }
+                ],
+                "icon": "el-icon-menu",
+                "id": "1236916745927790564",
+                "menu": true,
+                "name": "org",
+                "path": "/org",
+                "title": "组织管理"
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790557",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/log",
+                                "title": "删除日志权限"
+                            },
+                            {
+                                "children": [],
+                                "icon": "",
+                                "id": "1236916745927790591",
+                                "menu": false,
+                                "name": "",
+                                "path": "/api/logs",
+                                "title": "查询日志列表权限"
+                            }
+                        ],
+                        "icon": "el-icon-user-solid",
+                        "id": "1236916745927790589",
+                        "menu": true,
+                        "name": "logs",
+                        "path": "/logs",
+                        "title": "日志管理"
+                    },
+                    {
+                        "children": [],
+                        "icon": "el-icon-s-ticket",
+                        "id": "1236916745927790558",
+                        "menu": true,
+                        "name": "swagger",
+                        "path": "/swagger",
+                        "title": "接口管理"
+                    },
+                    {
+                        "children": [],
+                        "icon": "el-icon-s-data",
+                        "id": "1236916745927790571",
+                        "menu": true,
+                        "name": "sql",
+                        "path": "/sql",
+                        "title": "SQL监控"
+                    }
+                ],
+                "icon": "el-icon-s-tools",
+                "id": "1236916745927790569",
+                "menu": true,
+                "name": "sys",
+                "path": "/sys",
+                "title": "系统管理"
+            }
+        ],
+        "nickname": "超级管理员",
+        "permissions": [
+            "btn-role-add",
+            "btn-user-list",
+            "btn-log-delete",
+            "btn-permission-list",
+            "btn-role-detail",
+            "btn-role-update",
+            "btn-user-update-role",
+            "btn-user-delete",
+            "btn-log-list",
+            "btn-permission-update",
+            "btn-role-list",
+            "btn-role-delete",
+            "btn-user-update",
+            "btn-user-add",
+            "btn-permission-add",
+            "btn-permission-delete"
+        ],
+        "phone": "13888888888",
+        "username": "admin"
+    }
+}
