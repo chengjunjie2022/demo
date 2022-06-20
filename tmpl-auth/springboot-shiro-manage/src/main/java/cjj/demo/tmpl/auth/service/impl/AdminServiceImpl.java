@@ -26,63 +26,22 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
+
     @Autowired
     private AdminMapper adminMapper;
 
-    /**
-     * 登陆
-     * @param loginReqVo
-     * @return
-     */
     @Override
-    public Response<LoginRespVo> login(LoginReqVo loginReqVo) {
-        SysUser user = sysUserDao.findByUsername(loginReqVo.getUsername());
-        if (null == user){// 账号不存在
-            throw new BusinessException(ResponseCode.ACCOUNT_ERROR);
+    public Admin getAdminByLoginName(String loginName){
+        List<Admin> adminList = adminMapper.selectList(new QueryWrapper<Admin>().lambda()
+                .eq(Admin::getLoginName, loginName)
+                .orderByDesc(Admin::getId)
+        );
+        if(CollUtil.isNotEmpty(adminList)){
+            return adminList.get(0);
         }
-        if (!BCrypt.checkpw(loginReqVo.getPassword(),user.getPassword())){// 密码不正确
-            throw new BusinessException(ResponseCode.ACCOUNT_PASSWORD_ERROR);
-        }
-        if (user.getStatus() == 2){// 账号锁定
-            return Response.error(ResponseCode.ACCOUNT_LOCK.getMessage());
-        }
-        // 查询用户拥有的权限菜单列表
-        List<PermissionRespNodeVo> permissionRespNodeVos = permissionService.permissionTreeListByUserId(user.getId());
-        // 查询前端按钮权限
-        List<String> permissionCodes = sysUserRoleDao.getPermissionCodesByUserId(user.getId());
-        // 通过用户id获取该用户所拥有的角色名称
-        List<String> roleNames = sysUserRoleDao.getRoleNameByUserId(user.getId());
-        // 通过用户id获取该用户所拥有的权限授权 如：sys:user:add
-        List<String> permissionPerms = sysUserRoleDao.getPermissionPermsByUserId(user.getId());
-        /*List<String> roleNames = new ArrayList<>();
-        roleNames.add("admin");
-        List<String> permissionPerms = new ArrayList<>();
-        permissionPerms.add("sys:user");
-        permissionPerms.add("user:test");*/
-        // 用户业务 token 令牌
-        String accessToken = JwtTokenUtil.getInstance()
-                .setIssuer(tokenConfig.getIssuer())
-                .setSecret(tokenConfig.getSecretKey())
-                .setExpired(tokenConfig.getAccessTokenExpireTime().toMillis())
-                .setSubObject(user.getId())
-                .setClaim(Constant.JWT_ROLES_KEY, JSON.toJSONString(roleNames))
-                .setClaim(Constant.JWT_PERMISSIONS_KEY, JSON.toJSONString(permissionPerms))
-                .setClaim(Constant.JWT_USER_NAME, user.getUsername())
-                .generateToken();
-        // 每次登录的时候吧token放到 redis，用于只能一个账号同时在线
-        redisService.set(Constant.JWT_USER_NAME+user.getId(),accessToken);
-        // 每次登录先删除需要重新登录的标记
-        redisService.delete(Constant.JWT_USER_LOGIN_BLACKLIST+user.getId());
-        LoginRespVo loginRespVo = new LoginRespVo();
-        loginRespVo.setAuthorization(accessToken);
-        loginRespVo.setId(user.getId());
-        loginRespVo.setPhone(user.getPhone());
-        loginRespVo.setUsername(user.getUsername());
-        loginRespVo.setNickname(user.getNickName());
-        loginRespVo.setMenus(permissionRespNodeVos);
-        loginRespVo.setPermissions(permissionCodes);
-        return Response.success(loginRespVo);
+        return null;
     }
+
 
     /**
      * 退出登陆
@@ -380,11 +339,5 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         return Response.success(ResponseCode.SUCCESS.getMessage());
     }
 
-    private Admin getAdminByLoginName(String loginName){
-        List<Admin> adminList = adminMapper.selectList(new QueryWrapper<Admin>().lambda().eq(Admin::getLoginName, loginName).orderByDesc(Admin::getId));
-        if(CollUtil.isNotEmpty(adminList)){
-            return adminList.get(0);
-        }
-        return null;
-    }
+
 }

@@ -1,5 +1,6 @@
 package cjj.demo.tmpl.auth.shiro;
 
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.shiro.constarts.Constant;
 import com.shiro.enums.ResponseCode;
@@ -10,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.web.filter.AccessControlFilter;
+import road.cjj.commons.entity.R;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -23,28 +25,6 @@ import java.io.PrintWriter;
  */
 @Slf4j
 public class CustomAccessControllerFilter extends AccessControlFilter {
-
-    /** springboot，shiro跨域CORS请求，拿不到headers中的token值解决
-     * 处理前后端分离时，获取不到token
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    /*@Override
-    protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
-        HttpServletRequest httpRequest = WebUtils.toHttp(request);
-        HttpServletResponse httpResponse = WebUtils.toHttp(response);
-        if (httpRequest.getMethod().equals(RequestMethod.OPTIONS.name())){
-            httpResponse.setHeader("Access-control-Allow-Origin", httpRequest.getHeader("Origin"));
-            httpResponse.setHeader("Access-Control-Allow-Methods", httpRequest.getMethod());
-            httpResponse.setHeader("Access-Control-Allow-Headers", httpRequest.getHeader("Access-Control-Request-Headers"));
-            httpResponse.setHeader("Content-Type","application/json;charset=UTF-8");
-            httpResponse.setStatus(HttpStatus.OK.value());
-            return false;
-        }
-        return super.preHandle(httpRequest, httpResponse);
-    }*/
 
     /** 判断用户是否已经登录
      * 返回 true 则进入过滤器链中的下一个过滤器
@@ -114,7 +94,7 @@ public class CustomAccessControllerFilter extends AccessControlFilter {
         response.setCharacterEncoding("UTF-8");
         try {
             PrintWriter writer = response.getWriter();
-            writer.write(JSON.toJSONString(Response.error(code,message)));
+            writer.write(JSONUtil.toJsonStr(R.err(code,message)));
             writer.close();
             response.flushBuffer();
         } catch (IOException e) {

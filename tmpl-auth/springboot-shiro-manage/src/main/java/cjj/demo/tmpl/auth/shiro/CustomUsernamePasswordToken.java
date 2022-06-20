@@ -3,7 +3,7 @@ package cjj.demo.tmpl.auth.shiro;
 import org.apache.shiro.authc.UsernamePasswordToken;
 
 /**
- * Shiro 不支持 jwt-token，所以我们需要继承 UsernamePasswordToken ，吧 jwt-token 设置到 Shiro 中
+ * Shiro 不支持 jwt-token，所以我们需要继承 UsernamePasswordToken ，把 jwt-token 设置到 Shiro 中
  */
 public class CustomUsernamePasswordToken extends UsernamePasswordToken {
 

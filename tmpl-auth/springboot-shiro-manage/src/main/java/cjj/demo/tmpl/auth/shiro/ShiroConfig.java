@@ -1,6 +1,8 @@
 package cjj.demo.tmpl.auth.shiro;
 
-//import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import cjj.demo.tmpl.auth.shiro.CustomAccessControllerFilter;
+import cjj.demo.tmpl.auth.shiro.CustomRealm;
+import cn.hutool.core.map.MapUtil;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -8,6 +10,7 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheManager;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
@@ -15,24 +18,6 @@ import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
-
-    /** 分离模式不需要
-     * thymeleaf-shiro 权限标签配置
-     * @return
-     */
-    /*@Bean
-    public ShiroDialect shiroDialect() {
-        return new ShiroDialect();
-    }*/
-
-    /**
-     * 缓存管理器
-     * @return
-     */
-    @Bean
-    public RedisCacheManager redisCacheManager(){
-        return new RedisCacheManager();
-    }
 
     /**
      * 注入自定义认证器
@@ -52,8 +37,6 @@ public class ShiroConfig {
         CustomRealm customRealm = new CustomRealm();
         // 注入认证器 CustomHashedCredentialsMatcher
         customRealm.setCredentialsMatcher(customHashedCredentialsMatcher());
-        // 设置缓存管理器
-        customRealm.setCacheManager(redisCacheManager());
         return customRealm;
     }
 
@@ -62,9 +45,9 @@ public class ShiroConfig {
      * @return
      */
     @Bean
-    public SecurityManager securityManager(){
+    public DefaultWebSecurityManager securityManager(){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
-        // 注入域 Realm
+        // securityManager要完成校验，需要realm
         defaultWebSecurityManager.setRealm(customRealm());
         return defaultWebSecurityManager;
     }
@@ -73,69 +56,42 @@ public class ShiroConfig {
      * shiro过滤器，配置拦截哪些请求
      */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager defaultWebSecurityManager){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // 注入管理器
-        shiroFilterFactoryBean.setSecurityManager(securityManager());
-        //自定义拦截器限制并发人数,参考博客：
-        LinkedHashMap<String, Filter> filtersMap = new LinkedHashMap<>();
-        // 验证 token
-        filtersMap.put("token",new CustomAccessControllerFilter());
-        shiroFilterFactoryBean.setFilters(filtersMap);
+        shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
+        //自定义拦截器限制并发人数
+        shiroFilterFactoryBean.setFilters(MapUtil.builder(new LinkedHashMap<String, String>())
+                .put("token",new CustomAccessControllerFilter())
+                .build());
 
-        // 配置不会被拦截的链接 顺序判断
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/api/login", "anon");
-        //filterChainDefinitionMap.put("/index/**","anon");
-        filterChainDefinitionMap.put("/images/**", "anon");
-        filterChainDefinitionMap.put("/js/**", "anon");
-        filterChainDefinitionMap.put("/layui/**", "anon");
-        filterChainDefinitionMap.put("/css/**", "anon");
-        filterChainDefinitionMap.put("/treetable-lay/**", "anon");
-        filterChainDefinitionMap.put("/api/user/token", "anon");
-        //放开swagger-ui地址
-        filterChainDefinitionMap.put("/swagger/**", "anon");
-        filterChainDefinitionMap.put("/v2/api-docs", "anon");
-        filterChainDefinitionMap.put("/swagger-ui.html", "anon");
-        filterChainDefinitionMap.put("/swagger-resources/**", "anon");
-        filterChainDefinitionMap.put("/webjars/**", "anon");
-        filterChainDefinitionMap.put("/druid/**", "anon");
-        filterChainDefinitionMap.put("/favicon.ico", "anon");
-        filterChainDefinitionMap.put("/captcha.jpg", "anon");
-        filterChainDefinitionMap.put("/","anon");
-        filterChainDefinitionMap.put("/csrf","anon");
-        filterChainDefinitionMap.put("/**","token,authc");
+        /**
+         * 设置shiro的拦截规则，顺序判断
+         *         anon 匿名用户可访问
+         *         authc  认证用户可访问
+         *         user 使用RemeberMe的用户可访问
+         *         perms  对应权限可访问
+         *         role  对应的角色可访问
+         */
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(MapUtil.builder(new LinkedHashMap<String, String>())
+                        .put("/images/**", "anon")
+                        .put("/js/**", "anon")
+                        .put("/css/**", "anon")
+                        .put("/favicon.ico", "anon")
+                        .put("/swagger-ui/**", "anon")
+                        .put("/druid/**", "anon")
+                        .put("/manage/admin/login", "anon")
+                        .put("/manage/admin/token", "anon")
+                        .put("/**","token,authc")
+                .build());
 
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-        shiroFilterFactoryBean.setLoginUrl("/api/login");
-        //// 设置默认登录的 URL，身份认证失败会访问该 URL
-        //shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/manage/admin/login");
         //// 设置成功之后要跳转的链接
         //shiroFilterFactoryBean.setSuccessUrl("/success");
         //// 设置未授权界面，权限认证失败会访问该 URL
         //shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorized");
 
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
-    }
-
-    /**
-     * 开启shiro aop注解支持.
-     * 使用代理方式;所以需要开启代码支持;
-     * @return  org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor
-     * @throws
-     */
-    @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
-        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
-        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
-        return authorizationAttributeSourceAdvisor;
-    }
-    @Bean
-    @ConditionalOnMissingBean
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
-        DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
-        defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
-        return defaultAdvisorAutoProxyCreator;
     }
 }

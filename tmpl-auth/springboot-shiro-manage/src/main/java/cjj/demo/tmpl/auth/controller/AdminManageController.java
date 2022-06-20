@@ -1,13 +1,20 @@
 package cjj.demo.tmpl.auth.controller;
 
+import cjj.demo.tmpl.auth.dto.req.LoginReqVo;
+import cjj.demo.tmpl.auth.dto.resp.LoginRespVo;
+import cjj.demo.tmpl.auth.entity.Admin;
 import cjj.demo.tmpl.auth.service.IAdminService;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.digest.DigestUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import road.cjj.commons.entity.R;
-import road.cjj.commons.entity.consts.DefCfg;
+import road.cjj.commons.entity.RC;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -33,13 +40,64 @@ public class AdminManageController {
 
     /**
      * 登录
-     * @param loginReqVo
+     * @param req
      * @return
      */
     @ApiOperation(value = "用户登录",notes = "用户登录接口")
     @PostMapping("/login")
-    public R<LoginRespVo> login(@RequestBody @Valid LoginReqVo loginReqVo){
-        return adminService.login(loginReqVo);
+    public R<LoginRespVo> login(@RequestBody @Valid LoginReqVo req){
+        //1. 前端传参校验
+
+        //2. 业务参数校验
+        Admin admin = adminService.getAdminByLoginName(req.getLoginName());
+        if(ObjectUtil.isEmpty(admin)){
+            return R.err(RC.ERR_ACCOUNT_NO.getCode(), RC.ERR_ACCOUNT_NO.getMsg());
+        }
+        SecureUtil.hmacMd5()
+        DigestUtil.md5
+
+        if (!BCrypt.checkpw(loginReqVo.getPassword(),user.getPassword())){// 密码不正确
+            throw new BusinessException(ResponseCode.ACCOUNT_PASSWORD_ERROR);
+        }
+        if (user.getStatus() == 2){// 账号锁定
+            return Response.error(ResponseCode.ACCOUNT_LOCK.getMessage());
+        }
+        // 查询用户拥有的权限菜单列表
+        List<PermissionRespNodeVo> permissionRespNodeVos = permissionService.permissionTreeListByUserId(user.getId());
+        // 查询前端按钮权限
+        List<String> permissionCodes = sysUserRoleDao.getPermissionCodesByUserId(user.getId());
+        // 通过用户id获取该用户所拥有的角色名称
+        List<String> roleNames = sysUserRoleDao.getRoleNameByUserId(user.getId());
+        // 通过用户id获取该用户所拥有的权限授权 如：sys:user:add
+        List<String> permissionPerms = sysUserRoleDao.getPermissionPermsByUserId(user.getId());
+        /*List<String> roleNames = new ArrayList<>();
+        roleNames.add("admin");
+        List<String> permissionPerms = new ArrayList<>();
+        permissionPerms.add("sys:user");
+        permissionPerms.add("user:test");*/
+        // 用户业务 token 令牌
+        String accessToken = JwtTokenUtil.getInstance()
+                .setIssuer(tokenConfig.getIssuer())
+                .setSecret(tokenConfig.getSecretKey())
+                .setExpired(tokenConfig.getAccessTokenExpireTime().toMillis())
+                .setSubObject(user.getId())
+                .setClaim(Constant.JWT_ROLES_KEY, JSON.toJSONString(roleNames))
+                .setClaim(Constant.JWT_PERMISSIONS_KEY, JSON.toJSONString(permissionPerms))
+                .setClaim(Constant.JWT_USER_NAME, user.getUsername())
+                .generateToken();
+        // 每次登录的时候吧token放到 redis，用于只能一个账号同时在线
+        redisService.set(Constant.JWT_USER_NAME+user.getId(),accessToken);
+        // 每次登录先删除需要重新登录的标记
+        redisService.delete(Constant.JWT_USER_LOGIN_BLACKLIST+user.getId());
+        LoginRespVo loginRespVo = new LoginRespVo();
+        loginRespVo.setAuthorization(accessToken);
+        loginRespVo.setId(user.getId());
+        loginRespVo.setPhone(user.getPhone());
+        loginRespVo.setUsername(user.getUsername());
+        loginRespVo.setNickname(user.getNickName());
+        loginRespVo.setMenus(permissionRespNodeVos);
+        loginRespVo.setPermissions(permissionCodes);
+        return Response.success(loginRespVo);
     }
 
     /**

@@ -1,33 +1,34 @@
 package cjj.demo.tmpl.auth.dto.resp;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-@ApiModel(value = "用户对象",description = "用户信息对象")
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserRespVo {
-    @ApiModelProperty(value = "用户id")
+    @ApiModelProperty("用户id")
     private String id;
 
-    @ApiModelProperty(value = "账号")
+    @ApiModelProperty("账号")
     private String username;
 
-    @ApiModelProperty(value = "手机号")
+    @ApiModelProperty("手机号")
     private String phone;
 
-    @ApiModelProperty(value = "昵称")
+    @ApiModelProperty("昵称")
     private String nickName;
 
-    @ApiModelProperty(value = "真实姓名")
+    @ApiModelProperty("真实姓名")
     private String realName;
 
-    @ApiModelProperty(value = "性别(1.男 2.女)")
+    @ApiModelProperty("性别(1.男 2.女)")
     private Integer sex;
 
-    @ApiModelProperty(value = "账户状态(1.正常 2.锁定 )")
+    @ApiModelProperty("账户状态(1.正常 2.锁定 )")
     private Integer status;
 
-    @ApiModelProperty(value = "邮箱(唯一)")
+    @ApiModelProperty("邮箱(唯一)")
     private String email;
 }

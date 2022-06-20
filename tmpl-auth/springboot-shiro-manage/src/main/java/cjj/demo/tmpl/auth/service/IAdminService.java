@@ -13,10 +13,11 @@ import road.cjj.commons.entity.R;
  * @since 2022-06-18
  */
 public interface IAdminService extends IService<Admin> {
+
     /**
-     * 登陆
-     * @param loginReqVo
+     * 根据登录名查询用户
+     * @param loginName 登录名
      * @return
      */
-    R<LoginRespVo> login(Admin admin);
+    Admin getAdminByLoginName(String loginName);
 }

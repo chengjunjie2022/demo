@@ -1,0 +1,59 @@
+server:
+    port: 8080
+spring:
+    application:
+        name: springboot-shiro-manage
+    main:
+        allow-bean-definition-overriding: true
+
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        druid:
+            filters: dev
+            initial-size: 1
+            min-idle: 1
+            max-active: 20
+            max-wait: 60000
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT '*'
+            test-while-idle: true
+            test-on-borrow: true
+            test-on-return: false
+            pool-prepared-statements: false
+            max-pool-prepared-statement-per-connection-size: 20
+            connection-init-sqls: set names utf8mb4
+        dynamic:
+            primary: dev
+            strict: false
+            datasource:
+                dev:
+                    driver-class-name: com.mysql.cj.jdbc.Driver
+                    url: jdbc:mysql://81.70.145.33:3306/dev?connectTimeout=1000&useUnicode=true&characterEncoding=utf-8&useTimezone=true&serverTimezone=GMT%2B8&serverTimezone=Asia/Shanghai
+                    username: dev
+                    password: dev
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        #    password:
+        timeout: 200
+        database: 0
+        block-when-exhausted: true
+        lettuce:
+            pool:
+                max-active: 10
+                max-wait: 200
+                max-idle: 5
+                min-idle: 1
+
+mybatis-plus:
+    mapper-locations: classpath*:mapper/**/*.xml
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+jwt:
+    issuer: junjie.cheng
+    secret-key: AimvEjvi80_smE
+    access-token-expire-time: PT2H
+    refresh-token-expire-time: PT8H
+    refresh-token-expire-app-time: P30D
