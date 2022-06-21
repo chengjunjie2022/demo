@@ -1,20 +1,13 @@
 package cjj.demo.tmpl.auth.shiro;
 
-import cjj.demo.tmpl.auth.shiro.CustomAccessControllerFilter;
-import cjj.demo.tmpl.auth.shiro.CustomRealm;
 import cn.hutool.core.map.MapUtil;
-import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheManager;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
@@ -24,8 +17,8 @@ public class ShiroConfig {
      * @return
      */
     @Bean
-    public com.shiro.shiro.CustomHashedCredentialsMatcher customHashedCredentialsMatcher(){
-        return new com.shiro.shiro.CustomHashedCredentialsMatcher();
+    public CustomHashedCredentialsMatcher customHashedCredentialsMatcher(){
+        return new CustomHashedCredentialsMatcher();
     }
 
     /**
@@ -61,8 +54,8 @@ public class ShiroConfig {
         // 注入管理器
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         //自定义拦截器限制并发人数
-        shiroFilterFactoryBean.setFilters(MapUtil.builder(new LinkedHashMap<String, String>())
-                .put("token",new CustomAccessControllerFilter())
+        shiroFilterFactoryBean.setFilters(MapUtil.builder(new LinkedHashMap<String, Filter>())
+                .put("token", new CustomAccessControllerFilter())
                 .build());
 
         /**

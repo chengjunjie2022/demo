@@ -56,7 +56,7 @@ public class CustomRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         JWT jwt = JWTUtil.parseToken(accessToken);
         JWTPayload payload = jwt.getPayload();
-        int adminid = (Integer) payload.getClaim("adminid");
+        Long adminid = (Long) payload.getClaim("adminid");
         // 通过用户id获取该用户所拥有的角色名称
         List<Role> roleList = adminService.getRoleByAdminid(adminid);
         List<String> roleNames = roleList.stream().map(Role::getRoleName).collect(Collectors.toList());

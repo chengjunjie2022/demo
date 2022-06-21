@@ -1,17 +1,15 @@
 package cjj.demo.tmpl.auth.shiro;
 
+import cjj.demo.tmpl.auth.exception.BizException;
 import cn.hutool.json.JSONUtil;
-import com.alibaba.fastjson.JSON;
-import com.shiro.constarts.Constant;
-import com.shiro.enums.ResponseCode;
-import com.shiro.exception.BusinessException;
-import com.shiro.utils.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import road.cjj.commons.entity.R;
+import road.cjj.commons.entity.RC;
+import road.cjj.commons.redis.consts.RedisConst;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -52,11 +50,11 @@ public class CustomAccessControllerFilter extends AccessControlFilter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         try {
-            String accessToken = request.getHeader(Constant.ACCESS_TOKEN);
+            String accessToken = request.getHeader(RedisConst.ACCESS_TOKEN);
             if (StringUtils.isBlank(accessToken)) {
-                throw new BusinessException(ResponseCode.TOKEN_NOT_NULL);
+                throw new BizException(RC.ERR_TOKEN_NULL.getCode(), RC.ERR_TOKEN_NULL.getMsg());
             }
-            // 吧 accessToken 设置进 Shiro
+            // 把 accessToken 设置进 Shiro
             CustomUsernamePasswordToken customUsernamePasswordToken = new CustomUsernamePasswordToken(accessToken);
             /************************* Shiro 认证 *************************
                 Subject，主体即用户，
@@ -64,20 +62,20 @@ public class CustomAccessControllerFilter extends AccessControlFilter {
                 调用subject.login(token)执行认证。
             */
             getSubject(servletRequest, servletResponse).login(customUsernamePasswordToken);
-        }catch (BusinessException e){
-            responseJson(response,e.getCode(),e.getMessage());
+        }catch (BizException e){
+            responseJson(response,e.getRcode(),e.getRmsg());
             return false;
         }catch (AuthenticationException e){// 认证异常
             log.info("【打印 e.getCause 】，{}",e.getCause());
             // 判断该异常是我们手动抛出，还是 Shiro 抛出，为了区分提示信息
-            if (e.getCause() instanceof BusinessException){ // 手动抛出
-                BusinessException exception = (BusinessException) e.getCause();
-                responseJson(response,exception.getCode(),exception.getMessage());
+            if (e.getCause() instanceof BizException){ // 手动抛出
+                BizException exception = (BizException) e.getCause();
+                responseJson(response,exception.getRcode(),exception.getRmsg());
             }else if (e.getCause() instanceof ShiroException){ // Shiro 抛出
                 // 用户认证异常（登陆）
-                responseJson(response,ResponseCode.SHIRO_AUTHENTICATION_ERROR.getCode(),ResponseCode.SHIRO_AUTHENTICATION_ERROR.getMessage());
+                responseJson(response, RC.ERR_AUTHENTICATION.getCode(), RC.ERR_AUTHENTICATION.getMsg());
             }else { // 系统异常
-                responseJson(response,ResponseCode.SYSTEM_ERROR.getCode(),ResponseCode.SYSTEM_ERROR.getMessage());
+                responseJson(response, RC.ERR_SYS.getCode(), RC.ERR_SYS.getMsg());
             }
             return false;
         }

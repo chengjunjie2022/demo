@@ -1,19 +1,22 @@
 package cjj.demo.tmpl.auth.service.impl;
 
-import cjj.demo.tmpl.auth.entity.Admin;
-import cjj.demo.tmpl.auth.mapper.AdminMapper;
+import cjj.demo.tmpl.auth.entity.*;
+import cjj.demo.tmpl.auth.mapper.*;
 import cjj.demo.tmpl.auth.service.IAdminService;
 import cn.hutool.core.collection.CollUtil;
+import com.baomidou.mybatisplus.core.conditions.AbstractLambdaWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import road.cjj.commons.entity.R;
 import lombok.extern.slf4j.Slf4j;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import road.cjj.commons.entity.consts.NumE;
 
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -29,6 +32,14 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Autowired
     private AdminMapper adminMapper;
+    @Autowired
+    private RoleMapper roleMapper;
+    @Autowired
+    private AdminRoleMapper adminRoleMapper;
+    @Autowired
+    private RolePermissionMapper rolePermissionMapper;
+    @Autowired
+    private PermissionMapper permissionMapper;
 
     @Override
     public Admin getAdminByLoginName(String loginName){
@@ -38,6 +49,44 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         );
         if(CollUtil.isNotEmpty(adminList)){
             return adminList.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Role> getRoleByAdminid(Long adminid) {
+        List<AdminRole> adminRoleList = adminRoleMapper.selectList(new QueryWrapper<AdminRole>().lambda()
+                .eq(AdminRole::getAdminid, adminid));
+        if(CollUtil.isEmpty(adminRoleList)){
+            return null;
+        }
+        List<Role> roleList = roleMapper.selectList(new QueryWrapper<Role>().lambda()
+                .in(Role::getId, adminRoleList.stream().map(AdminRole::getRoleid).collect(Collectors.toList()))
+                .eq(Role::getIsDel, NumE.Switch.OFF)
+                .eq(Role::getIsPub, NumE.Switch.ON));
+        if(CollUtil.isNotEmpty(roleList)){
+            return  roleList;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Permission> getPermissionByAdminid(Long adminid) {
+        List<Role> roleList = getRoleByAdminid(adminid);
+        if(CollUtil.isEmpty(roleList)){
+            return null;
+        }
+        List<RolePermission> rolePermissionList = rolePermissionMapper.selectList(new QueryWrapper<RolePermission>().lambda()
+                .in(RolePermission::getRoleid, roleList.stream().map(Role::getId).collect(Collectors.toList())));
+        if(CollUtil.isEmpty(rolePermissionList)){
+            return null;
+        }
+        List<Permission> permissionList = permissionMapper.selectList(new QueryWrapper<Permission>().lambda()
+                .in(Permission::getId, rolePermissionList.stream().map(RolePermission::getPermissionid).collect(Collectors.toList()))
+                .eq(Permission::getIsDel, NumE.Switch.OFF)
+                .eq(Permission::getIsPub, NumE.Switch.ON));
+        if(CollUtil.isNotEmpty(permissionList)){
+            return  permissionList;
         }
         return null;
     }
