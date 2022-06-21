@@ -1,10 +1,13 @@
 package cjj.demo.tmpl.auth.service;
 
+import cjj.demo.tmpl.auth.dto.resp.PermissionRespNodeVo;
 import cjj.demo.tmpl.auth.entity.Permission;
 import com.baomidou.mybatisplus.extension.service.IService;
 import road.cjj.commons.entity.params.PageP;
 import road.cjj.commons.entity.params.TimeP;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
  * @since 2022-06-18
  */
 public interface IPermissionService extends IService<Permission> {
+
+    /**
+     * 根据管理员id获取权限树
+     * @param adminid
+     * @return
+     */
+    List<PermissionRespNodeVo> listTreePermissionByAdminid(Long adminid);
 }

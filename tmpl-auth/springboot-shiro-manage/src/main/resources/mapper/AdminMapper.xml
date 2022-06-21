@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cjj.demo.tmpl.auth.mapper.AdminMapper">
-    <resultMap id="BaseResultMap" type="com.shiro.pojo.SysUser">
+    <!--<resultMap id="BaseResultMap" type="com.shiro.pojo.SysUser">
         <result column="id" jdbcType="VARCHAR" property="id" />
         <result column="username" jdbcType="VARCHAR" property="username" />
         <result column="password" jdbcType="VARCHAR" property="password" />
@@ -147,7 +147,7 @@
     and deleted=1
   </select>
 
-    <!-- 分页查询用户（包括搜索条件） -->
+    &lt;!&ndash; 分页查询用户（包括搜索条件） &ndash;&gt;
     <select id="selectAll" resultType="com.shiro.vo.resp.UserTableRespVo" parameterType="com.shiro.vo.req.UserPageReqVo">
         SELECT su_a.id, su_a.username, su_a.phone, su_a.real_name, su_a.nick_name, su_a.email, su_a.status, su_a.sex, su_a.deleted,
         su_a.create_id, su_a.update_id, su_a.create_where,su_a.create_time, su_a.update_time,su_b.real_name createUserName,su_c.real_name updateUserName FROM sys_user su_a
@@ -173,7 +173,7 @@
         </where>
     </select>
 
-    <!-- 更新用户信息 -->
+    &lt;!&ndash; 更新用户信息 &ndash;&gt;
     <update id="updateSelective" parameterType="com.shiro.pojo.SysUser">
         update sys_user
         <set>
@@ -224,7 +224,7 @@
     </update>
 
 
-    <!-- 批量删除用户 -->
+    &lt;!&ndash; 批量删除用户 &ndash;&gt;
     <update id="deletedUsers" parameterType="com.shiro.pojo.SysUser">
         update sys_user
         <set>
@@ -240,5 +240,5 @@
         <foreach collection="list" separator="," open="(" close=")" item="item">
             #{item}
         </foreach>
-    </update>
+    </update>-->
 </mapper>

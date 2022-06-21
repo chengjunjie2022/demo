@@ -9,6 +9,10 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         druid:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://81.70.145.33:3306/dev?connectTimeout=1000&useUnicode=true&characterEncoding=utf-8&useTimezone=true&serverTimezone=GMT%2B8&serverTimezone=Asia/Shanghai
+            username: dev
+            password: dev
             filters: dev
             initial-size: 1
             min-idle: 1
@@ -23,15 +27,6 @@ spring:
             pool-prepared-statements: false
             max-pool-prepared-statement-per-connection-size: 20
             connection-init-sqls: set names utf8mb4
-        dynamic:
-            primary: dev
-            strict: false
-            datasource:
-                dev:
-                    driver-class-name: com.mysql.cj.jdbc.Driver
-                    url: jdbc:mysql://81.70.145.33:3306/dev?connectTimeout=1000&useUnicode=true&characterEncoding=utf-8&useTimezone=true&serverTimezone=GMT%2B8&serverTimezone=Asia/Shanghai
-                    username: dev
-                    password: dev
     redis:
         host: 127.0.0.1
         port: 6379

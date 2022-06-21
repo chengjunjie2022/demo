@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cjj.demo.tmpl.auth.mapper.RoleMapper">
-    <resultMap id="BaseResultMap" type="com.shiro.pojo.SysRole">
+    <!--<resultMap id="BaseResultMap" type="com.shiro.pojo.SysRole">
         <result column="id" jdbcType="VARCHAR" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="description" jdbcType="VARCHAR" property="description" />
@@ -93,7 +93,7 @@
         where id=#{id}
     </update>
 
-    <!-- 分页查询角色管理数据 -->
+    &lt;!&ndash; 分页查询角色管理数据 &ndash;&gt;
     <select id="selectAll" resultType="SysRole" parameterType="com.shiro.vo.req.RolePageReqVo">
         select *
         from sys_role
@@ -121,5 +121,5 @@
     select *
     from sys_role
     where id=#{roleId} and deleted=1
-  </select>
+  </select>-->
 </mapper>

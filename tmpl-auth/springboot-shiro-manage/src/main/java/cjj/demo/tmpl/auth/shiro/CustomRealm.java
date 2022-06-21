@@ -59,16 +59,16 @@ public class CustomRealm extends AuthorizingRealm {
         Long adminid = (Long) payload.getClaim("adminid");
         // 通过用户id获取该用户所拥有的角色名称
         List<Role> roleList = adminService.getRoleByAdminid(adminid);
-        List<String> roleNames = roleList.stream().map(Role::getRoleName).collect(Collectors.toList());
-        if (CollUtil.isNotEmpty(roleNames)){
-            authorizationInfo.addRoles(roleNames);
+        if(CollUtil.isNotEmpty(roleList)){
+            authorizationInfo.addRoles(roleList.stream().map(Role::getRoleName).collect(Collectors.toList()));
         }
+
         // 通过用户id获取该用户所拥有的权限授权 如：sys:user:add
         List<Permission> permissionList = adminService.getPermissionByAdminid(adminid);
-        List<String> permissionPerms = permissionList.stream().map(Permission::getPerms).collect(Collectors.toList());
-        if (CollUtil.isNotEmpty(permissionPerms)){
-            authorizationInfo.addStringPermissions(permissionPerms);
+        if(CollUtil.isNotEmpty(permissionList)){
+            authorizationInfo.addStringPermissions(permissionList.stream().map(Permission::getPerms).collect(Collectors.toList()));
         }
+
         return authorizationInfo;
     }
 
