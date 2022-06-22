@@ -2,8 +2,10 @@ package cjj.demo.tmpl.auth.controller;
 
 import cjj.demo.tmpl.auth.config.JwtConfig;
 import cjj.demo.tmpl.auth.dto.req.LoginReqVo;
+import cjj.demo.tmpl.auth.dto.req.UserPageReqVo;
 import cjj.demo.tmpl.auth.dto.resp.LoginRespVo;
 import cjj.demo.tmpl.auth.dto.resp.PermissionRespNodeVo;
+import cjj.demo.tmpl.auth.dto.resp.UserTableRespVo;
 import cjj.demo.tmpl.auth.entity.Admin;
 import cjj.demo.tmpl.auth.entity.Permission;
 import cjj.demo.tmpl.auth.entity.Role;
@@ -18,9 +20,10 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
-import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTPayload;
 import cn.hutool.jwt.JWTUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -177,26 +180,21 @@ public class AdminManageController {
     }
 
     @RequiresPermissions("sys:admin:page")
-    @ApiOperation(value = "分页查询用户",notes = "分页查询用户接口")
+    @ApiOperation(value = "分页查询管理员",notes = "分页查询管理员接口")
     @PostMapping("/page")
-    public R<String> pageInfo(){
-        return R.suc("page");
+    public R<R.P<Admin>> page(@RequestBody @Valid UserPageReqVo userPageReqVo){
+        IPage<Admin> page = new Page<>(userPageReqVo.getPageNum(), userPageReqVo.getPageSize());
+        IPage<Admin> rsPage = adminService.page(page);
+        return R.suc(rsPage, Admin.class);
     }
 
-    @ApiOperation(value = "新增用户",notes = "新增用户接口")
-    @RequiresPermissions("sys:admin:save")
-    @PostMapping("/save")
-    public R<String> addUser(){
-        return R.suc("save");
-    }
-
-    @ApiOperation(value = "新增用户",notes = "新增用户接口")
-    @RequiresPermissions("sys:admin:test")
-    @PostMapping("/test")
-    public R<String> test(){
-        return R.suc("test");
-    }
-
+//    @ApiOperation(value = "新增用户",notes = "新增用户接口")
+//    @RequiresPermissions("sys:admin:save")
+//    @PostMapping("/save")
+//    public R<String> addUser(){
+//        return R.suc("save");
+//    }
+//
 //    @MyLog(title = "组织管理-用户管理",action = "分页查询用户接口")
 //    @RequiresPermissions("sys:user:list")
 //    @ApiOperation(value = "分页查询用户",notes = "分页查询用户接口")
