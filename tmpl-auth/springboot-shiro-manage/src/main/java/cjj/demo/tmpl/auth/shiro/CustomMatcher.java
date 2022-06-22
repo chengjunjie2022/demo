@@ -15,12 +15,13 @@ import road.cjj.commons.redis.consts.RedisConst;
 
 import java.nio.charset.StandardCharsets;
 
-/** 自定义的认证器
+/**
+ * 自定义的认证器
  *
  * Shiro 的 认证器 HashedCredentialsMatcher
  * Shiro主要是用过 HashedCredentialsMatcher 的 doCredentialsMatch方法对提交的用户名密码组装的 token 进行效验，我们这使用的是 jwt-token
  */
-public class CustomHashedCredentialsMatcher extends HashedCredentialsMatcher {
+public class CustomMatcher extends HashedCredentialsMatcher {
 
     @Autowired
     private RedisUtil redisUtil;
@@ -37,11 +38,10 @@ public class CustomHashedCredentialsMatcher extends HashedCredentialsMatcher {
      */
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
-        CustomUsernamePasswordToken customUsernamePasswordToken = (CustomUsernamePasswordToken) token;
-        String accessToken = (String) customUsernamePasswordToken.getPrincipal();
+        JwtToken jwtToken = (JwtToken) token;
+        String accessToken = (String) jwtToken.getPrincipal();
         JWT jwt = JWTUtil.parseToken(accessToken);
-        JWTPayload payload = jwt.getPayload();
-        Long adminid = (Long) payload.getClaim("adminid");
+        Long adminid = ((Integer)jwt.getPayload().getClaim(JWTPayload.SUBJECT)).longValue();
 
         /**
          * 判断用户是否被锁定
@@ -70,8 +70,8 @@ public class CustomHashedCredentialsMatcher extends HashedCredentialsMatcher {
             throw new BizException(RC.ERR_TOKEN_PAST.getCode(), RC.ERR_TOKEN_PAST.getMsg());
         }
 
-        if (redisUtil.hasKey(RedisConst.JWT_LOGIN_NAME + adminid)){
-            String userAccessToken = (String) redisUtil.get(RedisConst.JWT_LOGIN_NAME + adminid);
+        if (redisUtil.hasKey(RedisConst.JWT_ADMIN_ID + adminid)){
+            String userAccessToken = (String) redisUtil.get(RedisConst.JWT_ADMIN_ID + adminid);
             if (!accessToken.equals(userAccessToken)){
                 throw new BizException(RC.ERR_TOKEN_EXISTS.getCode(), RC.ERR_TOKEN_EXISTS.getMsg());
             }

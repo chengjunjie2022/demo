@@ -16,13 +16,13 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTPayload;
 import cn.hutool.jwt.JWTUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -99,7 +99,10 @@ public class AdminManageController {
         List<String> roleNames = ListUtil.empty();
         List<Role> roleList = adminService.getRoleByAdminid(admin.getId());
         if(CollUtil.isNotEmpty(roleList)){
-            roleNames = roleList.stream().map(Role::getRoleName).collect(Collectors.toList());
+            roleNames = roleList.stream()
+                    .filter(role -> StrUtil.isNotBlank(role.getRoleName()))
+                    .map(Role::getRoleName)
+                    .collect(Collectors.toList());
         }
 
         // 通过用户id获取该用户所拥有的权限授权 如：sys:user:add
@@ -108,8 +111,14 @@ public class AdminManageController {
         List<String> permissionCodes = ListUtil.empty();
         List<Permission> permissionList = adminService.getPermissionByAdminid(admin.getId());
         if(CollUtil.isNotEmpty(permissionList)){
-            permissionPerms = permissionList.stream().map(Permission::getPerms).collect(Collectors.toList());
-            permissionCodes = permissionList.stream().map(Permission::getCode).collect(Collectors.toList());
+            permissionPerms = permissionList.stream()
+                    .filter(permission -> StrUtil.isNotBlank(permission.getPerms()))
+                    .map(Permission::getPerms)
+                    .collect(Collectors.toList());
+            permissionCodes = permissionList.stream()
+                    .filter(permission -> StrUtil.isNotBlank(permission.getCode()))
+                    .map(Permission::getCode)
+                    .collect(Collectors.toList());
         }
 
 
@@ -128,7 +137,7 @@ public class AdminManageController {
 
         //2.3 存储
         // 每次登录的时候吧token放到 redis，用于只能一个账号同时在线
-        redisUtil.set(RedisConst.JWT_LOGIN_NAME + admin.getId(), accessToken);
+        redisUtil.set(RedisConst.JWT_ADMIN_ID + admin.getId(), accessToken);
         // 每次登录先删除需要重新登录的标记
         redisUtil.delete(RedisConst.JWT_USER_LOGIN_BLACKLIST + admin.getId());
 
@@ -155,16 +164,15 @@ public class AdminManageController {
         }
 
         // 获取用户 id
-        JWT jwt = JWTUtil.parseToken(accessToken);
-        JWTPayload payload = jwt.getPayload();
-        Long adminid = ((Integer)payload.getClaim(JWTPayload.SUBJECT)).longValue();
+        Long adminid = ((Integer)JWTUtil.parseToken(accessToken).getPayload().getClaim(JWTPayload.SUBJECT)).longValue();
 
+        // 删除用户token
+        redisUtil.delete(RedisConst.JWT_ADMIN_ID + adminid);
         // 每次退出登录先删除需要重新登录的标记
         redisUtil.delete(RedisConst.JWT_USER_LOGIN_BLACKLIST + adminid);
-        /**
-         * 清楚用户授权数据缓存
-         */
+        // 清楚用户授权数据缓存
         redisUtil.delete(RedisConst.IDENTIFY_CACHE_KEY + adminid);
+
         return R.suc("success");
     }
 
@@ -180,6 +188,13 @@ public class AdminManageController {
     @PostMapping("/save")
     public R<String> addUser(){
         return R.suc("save");
+    }
+
+    @ApiOperation(value = "新增用户",notes = "新增用户接口")
+    @RequiresPermissions("sys:admin:test")
+    @PostMapping("/test")
+    public R<String> test(){
+        return R.suc("test");
     }
 
 //    @MyLog(title = "组织管理-用户管理",action = "分页查询用户接口")
