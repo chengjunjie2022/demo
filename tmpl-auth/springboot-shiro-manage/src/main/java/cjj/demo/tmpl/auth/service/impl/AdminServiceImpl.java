@@ -4,18 +4,14 @@ import cjj.demo.tmpl.auth.entity.*;
 import cjj.demo.tmpl.auth.mapper.*;
 import cjj.demo.tmpl.auth.service.*;
 import cn.hutool.core.collection.CollUtil;
-import com.baomidou.mybatisplus.core.conditions.AbstractLambdaWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import road.cjj.commons.entity.R;
 import lombok.extern.slf4j.Slf4j;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
-import road.cjj.commons.entity.consts.NumE;
+import road.cjj.commons.entity.consts.Num;
 
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -60,8 +56,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         }
         List<Role> roleList = roleService.getBaseMapper().selectList(new QueryWrapper<Role>().lambda()
                 .in(Role::getId, adminRoleList.stream().map(AdminRole::getRoleid).collect(Collectors.toList()))
-                .eq(Role::getIsDel, NumE.Switch.OFF.getCode())
-                .eq(Role::getIsPub, NumE.Switch.ON.getCode()));
+                .eq(Role::getIsDel, Num.Switch.OFF.getCode())
+                .eq(Role::getIsPub, Num.Switch.ON.getCode()));
         if(CollUtil.isNotEmpty(roleList)){
             return  roleList;
         }
@@ -81,8 +77,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         }
         List<Permission> permissionList = permissionService.getBaseMapper().selectList(new QueryWrapper<Permission>().lambda()
                 .in(Permission::getId, rolePermissionList.stream().map(RolePermission::getPermissionid).collect(Collectors.toList()))
-                .eq(Permission::getIsDel, NumE.Switch.OFF.getCode())
-                .eq(Permission::getIsPub, NumE.Switch.ON.getCode()));
+                .eq(Permission::getIsDel, Num.Switch.OFF.getCode())
+                .eq(Permission::getIsPub, Num.Switch.ON.getCode()));
         if(CollUtil.isNotEmpty(permissionList)){
             return  permissionList;
         }
