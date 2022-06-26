@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cjj.demo.tmpl.auth.mapper.PermissionMapper">
-    <resultMap id="BaseResultMap" type="com.shiro.pojo.SysPermission">
+    <!--<resultMap id="BaseResultMap" type="com.shiro.pojo.SysPermission">
         <result column="id" jdbcType="VARCHAR" property="id" />
         <result column="code" jdbcType="VARCHAR" property="code" />
         <result column="title" jdbcType="VARCHAR" property="title" />
@@ -128,7 +128,7 @@
         </trim>
     </insert>
 
-    <!-- 更新权限菜单数据 -->
+    &lt;!&ndash; 更新权限菜单数据 &ndash;&gt;
     <update id="updateByPrimaryKeySelective" parameterType="SysPermission">
         update sys_permission
         <set>
@@ -184,7 +184,7 @@
     where id=#{permissionId} and deleted=1 LIMIT 1
   </select>
 
-    <!-- 查询所有的菜单权限数据 -->
+    &lt;!&ndash; 查询所有的菜单权限数据 &ndash;&gt;
     <select id="selectAll" resultType="SysPermission">
     select *
     from sys_permission
@@ -201,10 +201,10 @@
     order by sp.order_num desc
   </select>
 
-    <!-- 通过 id 查询是否有子级 -->
+    &lt;!&ndash; 通过 id 查询是否有子级 &ndash;&gt;
     <select id="selectChild" resultType="int" parameterType="string">
     select count(1)
     from sys_permission
     where pid=#{id} and deleted=1
-  </select>
+  </select>-->
 </mapper>

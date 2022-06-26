@@ -1,7 +1,7 @@
 {
-  "name": "second-template-simple",
+  "name": "vue-simple-template",
   "version": "1.0.0",
-  "description": "second-template-simple",
+  "description": "vue-simple-template",
   "author": "junjie.cheng",
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "axios": "0.18.1",
-    "core-js": "3.6.5",
+    "core-js": "^3.6.5",
     "element-ui": "2.13.2",
     "js-cookie": "2.2.0",
     "normalize.css": "7.0.0",
@@ -40,6 +40,8 @@
     "sass-loader": "8.0.2",
     "script-ext-html-webpack-plugin": "2.1.3",
     "serve-static": "1.13.2",
+    "svg-sprite-loader": "4.1.3",
+    "svgo": "1.2.2",
     "vue-template-compiler": "2.6.10"
   },
   "engines": {

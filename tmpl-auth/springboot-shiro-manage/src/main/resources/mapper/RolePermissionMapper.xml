@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cjj.demo.tmpl.auth.mapper.RolePermissionMapper">
-    <resultMap id="BaseResultMap" type="com.shiro.pojo.SysRolePermission">
+    <!--<resultMap id="BaseResultMap" type="com.shiro.pojo.SysRolePermission">
         <result column="id" jdbcType="VARCHAR" property="id" />
         <result column="role_id" jdbcType="VARCHAR" property="roleId" />
         <result column="permission_id" jdbcType="VARCHAR" property="permissionId" />
@@ -45,17 +45,17 @@
         </trim>
     </insert>
 
-    <!-- 删除 -->
+    &lt;!&ndash; 删除 &ndash;&gt;
     <delete id="removeByRoleId" parameterType="string">
     delete from sys_role_permission where role_id=#{roleId}
   </delete>
-    <!-- 批量插入 角色 权限 id数据
+    &lt;!&ndash; 批量插入 角色 权限 id数据
        parameterType="com.shiro.pojo.SysRolePermission"
        parameterType="java.util.Map"
        parameterType="java.util.List"
        parameterType="java.util.Array"
        三种方式都可以
-    -->
+    &ndash;&gt;
     <insert id="batchRolePermission" parameterType="com.shiro.pojo.SysRolePermission">
         insert into sys_role_permission
         (id,role_id,permission_id,create_time)
@@ -70,24 +70,24 @@
         </foreach>
     </insert>
 
-    <!-- 通过权限 id 查询所有的角色 id -->
+    &lt;!&ndash; 通过权限 id 查询所有的角色 id &ndash;&gt;
     <select id="getRoleIdsByPermissionId" resultType="java.lang.String" parameterType="string">
     select role_id
     from sys_role_permission
     where permission_id=#{permissionId}
   </select>
 
-    <!-- 通过权限id删除相关角色和该菜单权限的关联表信息 -->
+    &lt;!&ndash; 通过权限id删除相关角色和该菜单权限的关联表信息 &ndash;&gt;
     <delete id="removeByPermissionId" parameterType="string">
     delete
     from sys_role_permission
     where permission_id=#{permissionId}
   </delete>
 
-    <!-- 通过角色id查询拥有的权限id -->
+    &lt;!&ndash; 通过角色id查询拥有的权限id &ndash;&gt;
     <select id="getPermissionIdsByRoleId" resultType="java.lang.String" parameterType="string">
     select permission_id
     from sys_role_permission
     where role_id=#{roleId}
-  </select>
+  </select>-->
 </mapper>

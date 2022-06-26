@@ -2,9 +2,6 @@ package cjj.demo.tmpl.auth.service;
 
 import cjj.demo.tmpl.auth.entity.AdminRole;
 import com.baomidou.mybatisplus.extension.service.IService;
-import road.cjj.commons.entity.params.PageP;
-import road.cjj.commons.entity.params.TimeP;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 
 /**
  * <p>

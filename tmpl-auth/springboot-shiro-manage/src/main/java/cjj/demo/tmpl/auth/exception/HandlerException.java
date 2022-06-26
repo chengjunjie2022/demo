@@ -1,25 +1,23 @@
 package cjj.demo.tmpl.auth.exception;
 
-import com.shiro.enums.ResponseCode;
-import com.shiro.utils.Response;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.UnauthorizedException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import road.cjj.commons.entity.R;
+import road.cjj.commons.entity.RC;
 
 
 /**
  * 全局异常
  */
+@Slf4j
 @RestControllerAdvice
 public class HandlerException {
-
-    private static Logger logger = LoggerFactory.getLogger(com.shiro.exception.HandlerException.class);
 
     /**
      * 捕获 MethodArgumentNotValidException
@@ -27,11 +25,11 @@ public class HandlerException {
      * @return
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Response<String> handleBusinessException(MethodArgumentNotValidException e){
-        logger.error("【参数异常】，{}",e);
-        BindingResult bindingResult = e.getBindingResult();
-        FieldError fieldError = bindingResult.getFieldError();
-        return Response.error(fieldError.getDefaultMessage());
+    public R<String> handleBusinessException(MethodArgumentNotValidException e){
+        log.error("【参数异常】，{}",e);
+        BindingResult br = e.getBindingResult();
+        FieldError fe = br.getFieldError();
+        return R.err(RC.ERR_P.getCode(), fe.getDefaultMessage());
     }
 
     /**
@@ -40,20 +38,20 @@ public class HandlerException {
      * @return
      */
     @ExceptionHandler(UnauthorizedException.class)
-    public Response<String> handleBusinessException(UnauthorizedException e){
-        logger.error("【权限异常】，{}",e);
-        return Response.error(ResponseCode.NOT_PERMISSION.getCode(),ResponseCode.NOT_PERMISSION.getMessage());
+    public R<String> handleBusinessException(UnauthorizedException e){
+        log.error("【权限异常】，{}",e);
+        return R.err(RC.ERR_NOT_PERMISSION.getCode(),RC.ERR_NOT_PERMISSION.getMsg());
     }
 
     /**
-     * 捕获 BusinessException
+     * 捕获 BizException
      * @param e
      * @return
      */
-    @ExceptionHandler(BusinessException.class)
-    public Response<String> handleBusinessException(BusinessException e){
-        logger.error("【业务异常】，{}",e);
-        return Response.error(e.getCode(),e.getMessage());
+    @ExceptionHandler(BizException.class)
+    public R<String> handleBusinessException(BizException e){
+        log.error("【业务异常】，{}",e);
+        return R.err(e.getRcode(),e.getRmsg());
     }
 
     /**
@@ -62,12 +60,12 @@ public class HandlerException {
      * @return
      */
     @ExceptionHandler(Exception.class)
-    public Response<String> handleException(Exception e){
+    public R<String> handleException(Exception e){
         if (e instanceof MaxUploadSizeExceededException){
-            logger.error("【上传文件异常】，{}",e);
-            return Response.error("文件最大不能超过1M");
+            log.error("【上传文件异常】，{}",e);
+            return R.err(RC.ERR_FILE_TO_LARGE.getCode(),RC.ERR_FILE_TO_LARGE.getMsg());
         }
-        logger.error("【系统异常】，{}",e);
-        return Response.error("系统异常");
+        log.error("【系统异常】，{}",e);
+        return R.err(RC.ERR_SYS.getCode(), RC.ERR_SYS.getMsg());
     }
 }

@@ -1,17 +1,19 @@
 package cjj.demo.tmpl.auth.dto.resp;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PermissionRespNodeTreeVo {
 
-    @ApiModelProperty(value = "权限id")
+    @ApiModelProperty("权限id")
     private String id;
 
-    @ApiModelProperty(value = "菜单权限名称")
+    @ApiModelProperty("菜单权限名称")
     private String title;
 
-    @ApiModelProperty(value = "level几级子菜单")
+    @ApiModelProperty("level几级子菜单")
     private int level;
 }

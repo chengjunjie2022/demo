@@ -43,6 +43,11 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.3.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+            <version>3.4.0</version>
+        </dependency>
         <!-- MySQL连接驱动 -->
         <dependency>
             <groupId>mysql</groupId>
@@ -52,7 +57,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.10</version>
+            <version>1.1.23</version>
         </dependency>
 
         <!-- 接口文档 -->
